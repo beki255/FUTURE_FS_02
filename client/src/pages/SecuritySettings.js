@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { authAPI } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import Layout from '../components/Layout';
-import { Shield, Key, Clock, CheckCircle, XCircle, AlertTriangle } from 'lucide-react';
+import { Shield, Key, Clock, CheckCircle, AlertTriangle } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const SecuritySettings = () => {

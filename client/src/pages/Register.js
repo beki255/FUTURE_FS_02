@@ -9,7 +9,6 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [photo, setPhoto] = useState('');
-  const [photoFile, setPhotoFile] = useState(null);
   const fileInputRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -28,7 +27,6 @@ const Register = () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         setPhoto(reader.result);
-        setPhotoFile(file);
       };
       reader.readAsDataURL(file);
     }
@@ -36,7 +34,6 @@ const Register = () => {
 
   const removePhoto = () => {
     setPhoto('');
-    setPhotoFile(null);
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
     }

@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { authAPI } from '../services/api';
-import { Mail, ArrowLeft, Key, CheckCircle } from 'lucide-react';
+import { Mail, ArrowLeft, Key } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
-  const [sent, setSent] = useState(false);
   const [resetToken, setResetToken] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -19,7 +18,6 @@ const ForgotPassword = () => {
     try {
       const response = await authAPI.forgotPassword(email);
       setResetToken(response.data.resetToken);
-      setSent(true);
       setStep('reset');
       toast.success('Reset token generated!');
     } catch (error) {

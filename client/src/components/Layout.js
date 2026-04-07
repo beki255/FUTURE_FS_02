@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { notificationsAPI } from '../services/api';
-import { LayoutDashboard, Users, LogOut, User, Shield, Settings, Sun, Moon, Bell, Check, X } from 'lucide-react';
+import { LayoutDashboard, Users, LogOut, User, Shield, Settings, Sun, Moon, Bell, Check } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const Layout = ({ children }) => {

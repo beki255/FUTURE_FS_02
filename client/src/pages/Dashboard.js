@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { leadsAPI } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import Layout from '../components/Layout';
-import { Users, PhoneCall, TrendingUp, Plus, UserPlus, CheckCircle, Clock, ArrowRight, BarChart3, PieChart, Calendar } from 'lucide-react';
+import { Users, PhoneCall, TrendingUp, Plus, UserPlus, CheckCircle, Clock, ArrowRight, BarChart3, PieChart } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const Dashboard = () => {
@@ -14,7 +14,6 @@ const Dashboard = () => {
     converted: 0
   });
   const [recentLeads, setRecentLeads] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [leads, setLeads] = useState([]);
   const { user } = useAuth();
 
@@ -24,7 +23,6 @@ const Dashboard = () => {
 
   const fetchData = async () => {
     try {
-      setLoading(true);
       const allLeadsResponse = await leadsAPI.getAll();
       const allLeads = allLeadsResponse.data;
       
@@ -40,8 +38,6 @@ const Dashboard = () => {
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
       toast.error('Failed to load dashboard data');
-    } finally {
-      setLoading(false);
     }
   };
 

@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { authAPI, leadsAPI } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import Layout from '../components/Layout';
-import { Users, Trash2, Edit, Eye, UserPlus, Shield, CheckCircle, XCircle, Phone, Clock } from 'lucide-react';
+import { Users, Trash2, Edit, UserPlus, Shield, CheckCircle, XCircle, Clock } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const AdminPanel = () => {
-  const { user } = useAuth();
+  const { user: currentUser } = useAuth();
   const [agents, setAgents] = useState([]);
   const [selectedAgent, setSelectedAgent] = useState(null);
   const [agentLeads, setAgentLeads] = useState([]);
