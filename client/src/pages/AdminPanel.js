@@ -6,7 +6,7 @@ import { Users, Trash2, Edit, UserPlus, Shield, CheckCircle, XCircle, Clock } fr
 import toast from 'react-hot-toast';
 
 const AdminPanel = () => {
-  const { user: currentUser } = useAuth();
+  useAuth(); // Required for auth context
   const [agents, setAgents] = useState([]);
   const [selectedAgent, setSelectedAgent] = useState(null);
   const [agentLeads, setAgentLeads] = useState([]);

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { leadsAPI } from '../services/api';
 import Layout from '../components/Layout';
 import { useAuth } from '../context/AuthContext';
-import { Search, Filter, Plus, Eye, Edit, Trash2, X, Users, UserPlus, Download, Upload, Image } from 'lucide-react';
+import { Search, Filter, Eye, Edit, Trash2, X, Users, UserPlus, Download, Upload, Image } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const Leads = () => {
