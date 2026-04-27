@@ -20,13 +20,37 @@ const Register = () => {
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      if (file.size > 2 * 1024 * 1024) {
-        setError('Photo must be less than 2MB');
+      if (file.size > 5 * 1024 * 1024) {
+        setError('Photo must be less than 5MB');
         return;
       }
       const reader = new FileReader();
       reader.onloadend = () => {
-        setPhoto(reader.result);
+        const imgElement = new window.Image();
+        imgElement.onload = () => {
+          const canvas = document.createElement('canvas');
+          const maxSize = 400;
+          let width = imgElement.width;
+          let height = imgElement.height;
+          if (width > height) {
+            if (width > maxSize) {
+              height *= maxSize / width;
+              width = maxSize;
+            }
+          } else {
+            if (height > maxSize) {
+              width *= maxSize / height;
+              height = maxSize;
+            }
+          }
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(imgElement, 0, 0, width, height);
+          const compressedDataUrl = canvas.toDataURL(file.type === 'image/png' ? 'image/png' : 'image/jpeg', 0.7);
+          setPhoto(compressedDataUrl);
+        };
+        imgElement.src = reader.result;
       };
       reader.readAsDataURL(file);
     }
@@ -57,10 +81,10 @@ const Register = () => {
     const result = await register(username, email, password, photo);
     setLoading(false);
     if (result === 'pending') {
-      setSuccessMessage('Registration successful! Your account is pending approval. Please contact admin.');
+      setSuccessMessage('Registration successful! Your account is pending approval by admin. Please wait 5 minutes before trying to log in.');
       setTimeout(() => {
         navigate('/login');
-      }, 3000);
+      }, 5000);
     } else if (result === true) {
       navigate('/dashboard');
     } else if (result === false) {

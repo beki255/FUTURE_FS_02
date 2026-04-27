@@ -15,7 +15,7 @@ const app = express();
 app.use(cors());
 
 // Parse JSON bodies (so we can get data from POST requests)
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
 
 // Parse URL-encoded bodies
 app.use(express.urlencoded({ extended: true }));
@@ -28,11 +28,11 @@ mongoose.connect(process.env.MONGO_URI)
     console.error("❌ MongoDB connection error:", err.message);
     process.exit(1);
   });
-
 // ========== IMPORT ROUTES ==========
 const authRoutes = require('./routes/authRoutes');
 const leadRoutes = require('./routes/leadRoutes');
 const notificationRoutes = require('./routes/notificationRoutes');
+
 
 // ========== USE ROUTES ==========
 // All auth routes will be prefixed with /api/auth
@@ -76,4 +76,5 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Server is running on port ${PORT}`);
   console.log(`📝 API URL: http://localhost:${PORT}`);
+  
 });

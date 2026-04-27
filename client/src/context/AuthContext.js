@@ -85,7 +85,7 @@ export const AuthProvider = ({ children }) => {
       
       // If registration requires approval, don't login
       if (response.data.requiresApproval) {
-        toast.success('Registration successful! Your account is pending approval by admin.');
+        toast.success('Registration successful! Your account is pending approval by admin. Please wait 5 minutes before trying to log in.');
         return 'pending';
       }
       
